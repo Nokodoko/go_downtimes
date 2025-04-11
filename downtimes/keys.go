@@ -6,21 +6,23 @@ import (
 )
 
 func api(key_name string) (string, error) {
-	key, err := os.Getenv(key_name)
+	err, ok := os.LookupEnv(key_name)
 	switch {
-	case key != key_name:
-		fmt.Errorf("%s environment variable is not set, or is set to a different name.", key_name)
+	case !ok:
+		return "", fmt.Errorf("%v, %s environment variable not set, or is set to a different name.", err, key_name)
 	default:
+		key := os.Getenv(key_name)
 		return key, nil
 	}
 }
 
 func app(key_name string) (string, error) {
-	key := os.Getenv(key_name)
+	err, ok := os.LookupEnv(key_name)
 	switch {
-	case key != "":
-		return "", fmt.Errorf("%s environment variable not set, or is set to a different name.", key_name)
+	case !ok:
+		return "", fmt.Errorf("%v, %s environment variable not set, or is set to a different name.", key_name, err)
 	default:
+		key := os.Getenv(key_name)
 		return key, nil
 	}
 }
