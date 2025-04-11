@@ -1,4 +1,4 @@
-package headers
+package downtimes
 
 import (
 	"encoding/json"
