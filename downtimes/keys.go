@@ -5,7 +5,7 @@ import (
 	"os"
 )
 
-func api(key_name string) (string, error) {
+func Api(key_name string) (string, error) {
 	err, ok := os.LookupEnv(key_name)
 	switch {
 	case !ok:
@@ -16,7 +16,7 @@ func api(key_name string) (string, error) {
 	}
 }
 
-func app(key_name string) (string, error) {
+func App(key_name string) (string, error) {
 	err, ok := os.LookupEnv(key_name)
 	switch {
 	case !ok:
